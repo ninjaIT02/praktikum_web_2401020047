@@ -6,6 +6,11 @@
 </head>
 <body>
     <h1>Daftar Buku</h1>
+    <p>Masuk sebagai {{ auth()->user()->name }}</p>
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Keluar</button>
+</form>
     <p><a href="{{ route('buku.create') }}">Tambah Buku</a></p>
     @if (session('status'))
         <p>{{ session('status') }}</p>
