@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema; // 1. Tambahkan baris ini
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Schema::defaultStringLength(191); // 2. Tambahkan baris ini
+        Gate::define('kelola-buku', function (User $user): bool {
+            return $user->role === 'admin';
+        });
     }
 }
